@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Restore project dependencies') {
+            steps {
+                bat "dotnet restore"
+            }
+        }
+
+        stage('Build the project') {
+            steps {
+                bat 'dotnet build --no-restore'
+            }
+        }
+      stage('Run Tests') {
+            steps {
+                bat 'dotnet tests --no-build --verbosity-normal'
+            }
+        }
+    }
+}
