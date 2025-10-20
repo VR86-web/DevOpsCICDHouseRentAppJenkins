@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Restore project dependencies') {
             steps {
-                bat "dotnet restore"
+                bat 'dotnet restore'
             }
         }
 
@@ -13,10 +13,12 @@ pipeline {
                 bat 'dotnet build --no-restore'
             }
         }
-      stage('Run Tests') {
+
+        stage('Run Tests') {
             steps {
-                bat 'dotnet tests --no-build --verbosity-normal'
+                bat 'dotnet test --no-build --verbosity normal'
             }
         }
     }
 }
+
